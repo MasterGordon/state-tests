@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "@redux-devtools/extension";
+import type {} from "@redux-devtools/extension";
 
 class State {
   public counter: number = 0;
