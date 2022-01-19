@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useMemo } from "react";
+import State, { useObservable } from "./State";
 
-function App() {
+const App: React.FC = () => {
+  const state = useMemo(() => new State(), []);
+  const oState = useObservable(state as any);
+  console.log("rendered");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>Hello World</div>
+      <div>Counter: {oState.counter}</div>
+      <button onClick={() => oState.increment()}>Increment</button>
+      <button onClick={() => oState.decrement()}>Decrement</button>
+    </>
   );
-}
+};
 
 export default App;
