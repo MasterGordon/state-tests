@@ -48,6 +48,10 @@ class Core {
     this.listener.push(listener);
   }
 
+  removeListener(listener: Function) {
+    this.listener = this.listener.filter((l) => l !== listener);
+  }
+
   processRequest(request: Request) {
     this.interactors
       .find((interactor) => interactor.constructor.name === request.type)
@@ -60,9 +64,11 @@ class Core {
 
 // TODO: bei use Store den Bereich des Stores mit Übergeben
 const useStore = (core: Core) => {
-  const [state, setState] = useState(0);
+  const [, setState] = useState(0);
   useEffect(() => {
-    core.addListener(() => setState((state) => ++state));
+    const listener = () => setState((state) => ++state);
+    core.addListener(listener);
+    return () => core.removeListener(listener);
   }, [core]);
   return core.store;
 };
