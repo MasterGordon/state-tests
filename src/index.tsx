@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import AppCore from "./AppCore";
+import AppProxy from "./AppProxy";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppCore></AppCore>
+    <AppProxy></AppProxy>
   </React.StrictMode>,
   document.getElementById("root")
 );
