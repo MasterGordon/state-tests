@@ -132,7 +132,7 @@ export const useObserved = <T extends object>(observed: Observer<T>) => {
     return () => observed.observer_removeListener(listener);
   }, [observed]);
   return useMemo(
-    () => observed.observer_getSubject() as ObjectWithoutFunctions<T>,
+    () => observed.observer_getSubject() as Readonly<ObjectWithoutFunctions<T>>,
     [observed]
   );
 };
